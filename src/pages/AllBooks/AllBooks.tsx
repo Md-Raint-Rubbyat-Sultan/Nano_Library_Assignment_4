@@ -5,12 +5,11 @@ import { useGetAllBooksQuery } from "@/redux/api/basiapi";
 export default function AllBooks() {
   const { data, isLoading } = useGetAllBooksQuery({
     fileter: "",
-    limit: 10,
+    limit: 20,
   });
 
   if (isLoading) return <Loader />;
 
-  console.log(data);
   return (
     <section>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">

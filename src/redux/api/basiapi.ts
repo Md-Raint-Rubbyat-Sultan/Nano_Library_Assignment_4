@@ -1,4 +1,4 @@
-import type { BookData } from "@/interfaces/book.interface";
+import type { book, BookData } from "@/interfaces/book.interface";
 import type { summaryData } from "@/interfaces/borrow.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -23,8 +23,24 @@ export const baseApi = createApi({
       query: () => "/borrow",
       providesTags: ["borrow"],
     }),
+    // create a book
+    createABook: builder.mutation<
+      Omit<BookData, "data"> & { data: book },
+      Omit<book, "_id" | "createdAt" | "updatedAt">
+    >({
+      query: (newBook) => ({
+        url: "/books",
+        method: "POST",
+        body: newBook,
+      }),
+      invalidatesTags: ["books", "borrow"],
+    }),
     // end of queries
   }),
 });
 
-export const { useGetAllBooksQuery, useGetBorrowedSummaryQuery } = baseApi;
+export const {
+  useGetAllBooksQuery,
+  useGetBorrowedSummaryQuery,
+  useCreateABookMutation,
+} = baseApi;

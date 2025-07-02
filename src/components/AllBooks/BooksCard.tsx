@@ -13,7 +13,6 @@ import { Button } from "../ui/button";
 import { ReceiptCent, Trash2, UploadCloud } from "lucide-react";
 
 export default function BooksCard({ book }: { book: book }) {
-  console.log(book);
   const {
     author,
     available,
@@ -59,7 +58,7 @@ export default function BooksCard({ book }: { book: book }) {
           {createdAt?.slice(0, 10)}
         </p>
       </CardContent>
-      <CardFooter className="justify-between">
+      <CardFooter className="flex-wrap justify-between space-y-2">
         <Button>
           <ReceiptCent /> Borrow
         </Button>

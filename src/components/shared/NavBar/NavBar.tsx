@@ -11,12 +11,7 @@ import {
 import { useState } from "react";
 import { ChartBar } from "lucide-react";
 import { ModeToggle } from "../ModeToggle/ModeToggle";
-
-const navLinks: { name: string; link: string }[] = [
-  { name: "All Books", link: "/books" },
-  { name: "Add Books", link: "/create-book" },
-  { name: "Borrow Summary", link: "/borrow-summary" },
-];
+import { navLinks } from "@/lib/constants";
 
 export default function NavBar() {
   const [position, setPosition] = useState<string>(() => "");

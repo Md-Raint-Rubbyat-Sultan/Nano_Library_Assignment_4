@@ -23,4 +23,6 @@ interface BookData {
   success: boolean;
 }
 
-export type { book, BookData };
+type SingleBookData = Omit<BookData, "data"> & { data: book };
+
+export type { book, BookData, SingleBookData };

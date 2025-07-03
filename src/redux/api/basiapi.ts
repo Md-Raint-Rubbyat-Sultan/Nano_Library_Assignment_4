@@ -1,4 +1,8 @@
-import type { book, BookData } from "@/interfaces/book.interface";
+import type {
+  book,
+  BookData,
+  SingleBookData,
+} from "@/interfaces/book.interface";
 import type { summaryData } from "@/interfaces/borrow.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -7,7 +11,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api",
   }),
-  tagTypes: ["books", "borrow"],
+  tagTypes: ["books", "borrow", "book"],
   endpoints: (builder) => ({
     // get all books
     getAllBooks: builder.query<
@@ -18,6 +22,11 @@ export const baseApi = createApi({
         `/books?filter=${fileter}&limit=${limit}`,
       providesTags: ["books"],
     }),
+    // get a single book
+    getSingleBook: builder.query<SingleBookData, string>({
+      query: (_id) => `/books/${_id}`,
+      providesTags: ["book"],
+    }),
     // get borrowed summary
     getBorrowedSummary: builder.query<summaryData, void>({
       query: () => "/borrow",
@@ -25,7 +34,7 @@ export const baseApi = createApi({
     }),
     // create a book
     createABook: builder.mutation<
-      Omit<BookData, "data"> & { data: book },
+      SingleBookData,
       Omit<book, "_id" | "createdAt" | "updatedAt">
     >({
       query: (newBook) => ({
@@ -41,6 +50,7 @@ export const baseApi = createApi({
 
 export const {
   useGetAllBooksQuery,
+  useGetSingleBookQuery,
   useGetBorrowedSummaryQuery,
   useCreateABookMutation,
 } = baseApi;

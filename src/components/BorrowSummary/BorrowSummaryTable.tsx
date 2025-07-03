@@ -14,7 +14,6 @@ export default function BorrowSummaryTable({
 }: {
   bookSummary: summary[];
 }) {
-  console.log(bookSummary);
   return (
     <Table className="w-fit">
       <TableCaption className="mb-4">Books Borrow Summary</TableCaption>

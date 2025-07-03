@@ -24,6 +24,7 @@ import { genre } from "@/lib/constants";
 import { useCreateABookMutation } from "@/redux/api/basiapi";
 import { LoaderPinwheel } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 // zod schema
 const formSchema = z.object({
@@ -37,6 +38,7 @@ const formSchema = z.object({
 
 export default function AddBookForm() {
   const [createBook, { isLoading }] = useCreateABookMutation();
+  const navigate = useNavigate();
 
   // zod form schema
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,11 +56,20 @@ export default function AddBookForm() {
   // form submit funtion
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { data } = await createBook({ ...values, available: true });
-    toast(`The book: "${data?.data?.title}" is added`, {
-      position: "top-center",
-      icon: "✅",
-    });
-    form.reset();
+    if (data?.success) {
+      toast(`The book: "${data?.data?.title}" is added`, {
+        position: "top-center",
+        icon: "✅",
+      });
+      form.reset();
+      navigate("/books");
+    } else {
+      toast(`Unable to add book. Error: ${data?.message}`, {
+        position: "top-center",
+        icon: "❌",
+      });
+      form.reset();
+    }
   }
 
   return (

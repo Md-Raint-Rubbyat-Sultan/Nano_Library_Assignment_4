@@ -47,7 +47,7 @@ export default function BooksTable({ books }: { books: book[] }) {
                 {`${description?.slice(0, 20)}...` || "None"}
               </TableCell>
               <TableCell>{copies}</TableCell>
-              <TableCell>{available ? "Available" : "Not Available"}</TableCell>
+              <TableCell>{available ? "Available" : "Unavailable"}</TableCell>
               <TableCell>
                 {/* Need to use functiolality here */}
                 <div className="space-x-2">

@@ -22,7 +22,6 @@ import { Input } from "@/components/ui/input";
 
 import { genre } from "@/lib/constants";
 import {
-  useCreateABookMutation,
   useGetSingleBookQuery,
   useUpdateABookMutation,
 } from "@/redux/api/basiapi";
@@ -31,7 +30,6 @@ import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router";
 import { Textarea } from "@/components/ui/textarea";
 import Loader from "@/components/shared/Loader/Loader";
-import type { book } from "@/interfaces/book.interface";
 
 // zod schema
 const formSchema = z.object({
@@ -43,10 +41,10 @@ const formSchema = z.object({
   copies: z.number().int().min(1).positive(),
 });
 
-export default function AddBookForm() {
+export default function UpdateABook() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const _id = id as string;
+  const navigate = useNavigate();
   const { data, isLoading } = useGetSingleBookQuery(_id);
   const [updateBook, { isLoading: updateLoading }] = useUpdateABookMutation();
 
@@ -67,7 +65,6 @@ export default function AddBookForm() {
 
   // form submit funtion
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const { data } = await updateBook({ _id, ...values });
     if (data?.data) {
       toast(`The book: "${data?.data?.title}" is added`, {

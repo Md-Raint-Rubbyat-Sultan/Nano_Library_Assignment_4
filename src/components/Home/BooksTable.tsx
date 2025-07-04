@@ -46,7 +46,13 @@ export default function BooksTable({ books }: { books: book[] }) {
                 {`${description?.slice(0, 20)}...` || "None"}
               </TableCell>
               <TableCell>{copies}</TableCell>
-              <TableCell>{available ? "Available" : "Unavailable"}</TableCell>
+              <TableCell>
+                {available ? (
+                  <span className="text-green-500">Available</span>
+                ) : (
+                  <span className="text-orange-500">Unavailable</span>
+                )}
+              </TableCell>
               <TableCell>
                 {/* Need to use functiolality here */}
                 <CommonActionButtons

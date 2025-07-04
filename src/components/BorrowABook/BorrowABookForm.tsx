@@ -56,7 +56,6 @@ export default function BorrowABookForm({
 
   // form submit funtion
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log({ ...values, dueDate: values.dueDate.toISOString() });
     const { data } = await createBorrow({
       ...values,
       dueDate: values.dueDate.toISOString(),
@@ -68,7 +67,7 @@ export default function BorrowABookForm({
         icon: "✅",
       });
       form.reset();
-      navigate("/books");
+      navigate("/borrow-summary");
     } else {
       toast(`${data?.message}. Unable to borrow.`, {
         position: "top-center",

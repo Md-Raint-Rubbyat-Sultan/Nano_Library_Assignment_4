@@ -1,6 +1,6 @@
 import BorrowABookButton from "@/components/BorrowABookButton/BorrowABookButton";
+import DeleteABookButton from "@/components/DeleteABookButton/DeleteABookButton";
 import Loader from "@/components/shared/Loader/Loader";
-import { Button } from "@/components/ui/button";
 import UpdateABookButton from "@/components/UpdateABookButton/UpdateABookButton";
 import type { book } from "@/interfaces/book.interface";
 import { useGetSingleBookQuery } from "@/redux/api/basiapi";
@@ -64,9 +64,9 @@ export default function BookDetails() {
         <UpdateABookButton _id={_id}>
           <UploadCloud /> Update
         </UpdateABookButton>
-        <Button variant={"outline"} className="text-green-500">
-          <Trash />
-        </Button>
+        <DeleteABookButton _id={_id}>
+          <Trash /> Delete
+        </DeleteABookButton>
       </div>
     </section>
   );

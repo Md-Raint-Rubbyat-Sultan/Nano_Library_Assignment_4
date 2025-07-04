@@ -5,7 +5,7 @@ import { useGetAllBooksQuery } from "@/redux/api/basiapi";
 export default function AllBooks() {
   const { data, isLoading } = useGetAllBooksQuery({
     fileter: "",
-    limit: 20,
+    limit: 10,
   });
 
   if (isLoading) return <Loader />;

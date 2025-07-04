@@ -16,10 +16,9 @@ export const baseApi = createApi({
     // get all books
     getAllBooks: builder.query<
       BookData,
-      { fileter: string | ""; limit: number }
+      { fileter: string | ""; limit?: number | undefined }
     >({
-      query: ({ fileter, limit = 10 }) =>
-        `/books?filter=${fileter}&limit=${limit}`,
+      query: ({ fileter, limit }) => `/books?filter=${fileter}&limit=${limit}`,
       providesTags: ["books"],
     }),
     // get a single book
@@ -70,6 +69,14 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["books", "borrow"],
     }),
+    // Delete a Book
+    deleteABook: builder.mutation<SingleBookData, string>({
+      query: (_id) => ({
+        url: `/books/${_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["books", "borrow"],
+    }),
     // end of queries
   }),
 });
@@ -81,4 +88,5 @@ export const {
   useCreateABookMutation,
   useBorrowABookMutation,
   useUpdateABookMutation,
+  useDeleteABookMutation,
 } = baseApi;

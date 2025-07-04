@@ -34,6 +34,7 @@ const formSchema = z.object({
   isbn: z.string().min(1),
   description: z.string().optional(),
   copies: z.number().int().min(1).positive(),
+  available: z.string(),
 });
 
 export default function AddBookForm() {
@@ -50,12 +51,18 @@ export default function AddBookForm() {
       isbn: "",
       copies: 0,
       description: "",
+      available: "true",
     },
   });
 
   // form submit funtion
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { data } = await createBook({ ...values, available: true });
+    const newValues = {
+      ...values,
+      available: values.available === "true" ? true : false,
+    };
+
+    const { data } = await createBook(newValues);
     if (data?.success) {
       toast(`The book: "${data?.data?.title}" is added`, {
         position: "top-center",
@@ -172,6 +179,31 @@ export default function AddBookForm() {
                 </FormControl>
                 <SelectContent>
                   {genre.map((g, idx) => (
+                    <SelectItem key={idx} value={g}>
+                      {g}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* availabel */}
+        <FormField
+          control={form.control}
+          name="available"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Genre</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="select Genre" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {["true", "false"].map((g, idx) => (
                     <SelectItem key={idx} value={g}>
                       {g}
                     </SelectItem>

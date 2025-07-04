@@ -1,11 +1,31 @@
-# React + TypeScript + Vite
+# 📚 Nano_Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and interactive full-stack library management system built with **React 19**, **TypeScript**, **Tailwind CSS v4**, **React Router v7**, and **Redux Toolkit**. Nano_Library allows users to manage books and borrowing records efficiently through a sleek and user-friendly UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
+
+- 🔗 Frontend: [https://nano-library.vercel.app](https://nano-library.vercel.app)
+- 🔗 Backend API: [https://librarymanagementassigment.vercel.app/api/books](https://librarymanagementassigment.vercel.app/api/books)
+
+---
+
+## 📑 Pages & Routes
+
+| Path              | Description                                                                                  |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| `/books`          | Displays a list of all books with options to **view**, **edit**, **delete**, and **borrow**. |
+| `/create-book`    | Form interface to **add a new book** to the system.                                          |
+| `/books/:id`      | Detailed view of a **single book's information**.                                            |
+| `/edit-book/:id`  | Interface to **update book details**.                                                        |
+| `/borrow/:bookId` | Borrow form for a **specific book**.                                                         |
+| `/borrow-summary` | View an **aggregated summary** of borrowed books.                                            |
+
+## SetUp Project
+
+- Make an .env file put VITE_API_URL="your server url"
+- Just clone it and use command **run npm i**
 
 ## Expanding the ESLint configuration
 
@@ -13,9 +33,9 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
 
@@ -30,40 +50,40 @@ export default tseslint.config([
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
       // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
+      reactX.configs["recommended-typescript"],
       // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```

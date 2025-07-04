@@ -1,0 +1,32 @@
+import BorrowABookButton from "@/components/BorrowABookButton/BorrowABookButton";
+import { Button } from "@/components/ui/button";
+import ViewDtailsButton from "@/components/ViewDtailsButton/ViewDtailsButton";
+import { cn } from "@/lib/utils";
+import { EyeIcon, ReceiptCent, Trash, UploadCloud } from "lucide-react";
+
+export default function CommonActionButtons({
+  _id,
+  available,
+  style,
+}: {
+  _id: string;
+  available?: boolean;
+  style?: string;
+}) {
+  return (
+    <div className={cn("flex items-center", style)}>
+      <ViewDtailsButton _id={_id}>
+        <EyeIcon /> Details
+      </ViewDtailsButton>
+      <BorrowABookButton _id={_id} available={!available}>
+        <ReceiptCent /> Borrow
+      </BorrowABookButton>
+      <Button variant={"outline"} className="text-green-500">
+        <UploadCloud /> Update
+      </Button>
+      <Button variant={"outline"} className="text-green-500">
+        <Trash />
+      </Button>
+    </div>
+  );
+}

@@ -3,7 +3,7 @@ import type {
   BookData,
   SingleBookData,
 } from "@/interfaces/book.interface";
-import type { summaryData } from "@/interfaces/borrow.interface";
+import type { borrow, summaryData } from "@/interfaces/borrow.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
@@ -44,6 +44,20 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["books", "borrow"],
     }),
+    // borrow a book
+    borrowABook: builder.mutation<
+      Omit<summaryData, "data"> & {
+        data: borrow & { _id: string; createdAt: string; updatedAt: string };
+      },
+      borrow
+    >({
+      query: (newBorrow) => ({
+        url: "/borrow",
+        method: "POST",
+        body: newBorrow,
+      }),
+      invalidatesTags: ["books", "borrow"],
+    }),
     // end of queries
   }),
 });
@@ -53,4 +67,5 @@ export const {
   useGetSingleBookQuery,
   useGetBorrowedSummaryQuery,
   useCreateABookMutation,
+  useBorrowABookMutation,
 } = baseApi;

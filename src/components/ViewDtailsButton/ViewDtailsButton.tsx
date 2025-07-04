@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import ActionButton from "../ActionButton/ActionButton";
 import { useNavigate } from "react-router";
+import ActionButton from "../shared/ActionButton/ActionButton";
 
 export default function ViewDtailsButton({
   children,

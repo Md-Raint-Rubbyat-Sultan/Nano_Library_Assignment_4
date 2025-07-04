@@ -182,8 +182,8 @@ export default function AddBookForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading}>
-          Submit {isLoading && <LoaderPinwheel className="animate-spin" />}
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          ADD {isLoading && <LoaderPinwheel className="animate-spin" />}
         </Button>
       </form>
     </Form>

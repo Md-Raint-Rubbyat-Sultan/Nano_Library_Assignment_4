@@ -1,7 +1,7 @@
 interface borrow {
   book: string;
   quantity: number;
-  dueDate: Date;
+  dueDate: string;
 }
 
 interface summary {

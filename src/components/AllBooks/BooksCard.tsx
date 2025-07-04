@@ -11,7 +11,9 @@ import type { book } from "@/interfaces/book.interface";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { EyeIcon, ReceiptCent, Trash2, UploadCloud } from "lucide-react";
-import ViewDtailsButton from "../shared/ViewDtailsButton/ViewDtailsButton";
+import ViewDtailsButton from "../ViewDtailsButton/ViewDtailsButton";
+import BorrowABookButton from "../BorrowABookButton/BorrowABookButton";
+import CommonActionButtons from "../shared/CommonActionButtons/CommonActionButtons";
 
 export default function BooksCard({ book }: { book: book }) {
   const { author, available, copies, description, genre, title, _id } = book;
@@ -43,24 +45,13 @@ export default function BooksCard({ book }: { book: book }) {
         <p>
           <span className="font-medium">Copies:</span> {copies}
         </p>
-        {/* <p>
-          <span className="font-medium">Get in stock:</span>{" "}
-          {createdAt?.slice(0, 10)}
-        </p> */}
       </CardContent>
-      <CardFooter className="flex-wrap justify-between gap-4">
-        <ViewDtailsButton _id={_id}>
-          <EyeIcon /> Details
-        </ViewDtailsButton>
-        <Button className="t-2">
-          <ReceiptCent /> Borrow
-        </Button>
-        <Button className="t-2">
-          <UploadCloud /> Update
-        </Button>
-        <Button className="t-2">
-          <Trash2 /> Delete
-        </Button>
+      <CardFooter>
+        <CommonActionButtons
+          _id={_id}
+          available={available}
+          style="flex-wrap gap-4"
+        />
       </CardFooter>
     </Card>
   );

@@ -8,9 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { book } from "@/interfaces/book.interface";
-import { Button } from "../ui/button";
-import { EyeIcon, ReceiptCent, Trash, UploadCloud } from "lucide-react";
 import { Link } from "react-router";
+import CommonActionButtons from "../shared/CommonActionButtons/CommonActionButtons";
 
 export default function BooksTable({ books }: { books: book[] }) {
   return (
@@ -35,7 +34,7 @@ export default function BooksTable({ books }: { books: book[] }) {
       <TableBody>
         {books.map(
           (
-            { isbn, title, author, genre, description, copies, available },
+            { _id, isbn, title, author, genre, description, copies, available },
             idx: number
           ) => (
             <TableRow key={idx}>
@@ -50,24 +49,11 @@ export default function BooksTable({ books }: { books: book[] }) {
               <TableCell>{available ? "Available" : "Unavailable"}</TableCell>
               <TableCell>
                 {/* Need to use functiolality here */}
-                <div className="space-x-2">
-                  <Button variant={"outline"} className="text-green-500">
-                    <EyeIcon /> Details
-                  </Button>
-                  <Button
-                    variant={"outline"}
-                    className="text-green-500"
-                    disabled={!available}
-                  >
-                    <ReceiptCent /> Borrow
-                  </Button>
-                  <Button variant={"outline"} className="text-green-500">
-                    <UploadCloud /> Update
-                  </Button>
-                  <Button variant={"outline"} className="text-green-500">
-                    <Trash />
-                  </Button>
-                </div>
+                <CommonActionButtons
+                  _id={_id}
+                  available={available}
+                  style="gap-2"
+                />
               </TableCell>
             </TableRow>
           )

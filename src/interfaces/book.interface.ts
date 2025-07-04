@@ -21,6 +21,7 @@ interface BookData {
   data: book[];
   message: string;
   success: boolean;
+  docCount?: number;
 }
 
 type SingleBookData = Omit<BookData, "data"> & { data: book };

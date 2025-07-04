@@ -9,16 +9,17 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   tagTypes: ["books", "borrow", "book"],
   endpoints: (builder) => ({
     // get all books
     getAllBooks: builder.query<
       BookData,
-      { fileter: string | ""; limit?: number | undefined }
+      { fileter: string | ""; limit: number; page?: number }
     >({
-      query: ({ fileter, limit }) => `/books?filter=${fileter}&limit=${limit}`,
+      query: ({ fileter, limit, page }) =>
+        `/books?filter=${fileter}&limit=${limit}&page=${page}`,
       providesTags: ["books"],
     }),
     // get a single book
@@ -41,7 +42,7 @@ export const baseApi = createApi({
         method: "POST",
         body: newBook,
       }),
-      invalidatesTags: ["books", "borrow"],
+      invalidatesTags: ["books", "borrow", "book"],
     }),
     // borrow a book
     borrowABook: builder.mutation<
@@ -55,7 +56,7 @@ export const baseApi = createApi({
         method: "POST",
         body: newBorrow,
       }),
-      invalidatesTags: ["books", "borrow"],
+      invalidatesTags: ["books", "borrow", "book"],
     }),
     // Update a Book
     updateABook: builder.mutation<
@@ -67,7 +68,7 @@ export const baseApi = createApi({
         method: "PUT",
         body: updatedDoc,
       }),
-      invalidatesTags: ["books", "borrow"],
+      invalidatesTags: ["books", "borrow", "book"],
     }),
     // Delete a Book
     deleteABook: builder.mutation<SingleBookData, string>({
@@ -75,7 +76,7 @@ export const baseApi = createApi({
         url: `/books/${_id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["books", "borrow"],
+      invalidatesTags: ["books", "borrow", "book"],
     }),
     // end of queries
   }),

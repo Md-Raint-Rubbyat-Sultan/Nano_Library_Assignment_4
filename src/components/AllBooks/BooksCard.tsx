@@ -9,10 +9,6 @@ import {
 } from "@/components/ui/card";
 import type { book } from "@/interfaces/book.interface";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
-import { EyeIcon, ReceiptCent, Trash2, UploadCloud } from "lucide-react";
-import ViewDtailsButton from "../ViewDtailsButton/ViewDtailsButton";
-import BorrowABookButton from "../BorrowABookButton/BorrowABookButton";
 import CommonActionButtons from "../shared/CommonActionButtons/CommonActionButtons";
 
 export default function BooksCard({ book }: { book: book }) {

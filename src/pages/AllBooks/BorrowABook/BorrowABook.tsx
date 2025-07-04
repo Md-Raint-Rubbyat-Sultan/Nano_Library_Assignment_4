@@ -9,7 +9,6 @@ export default function BorrowABook() {
   const { data, isLoading } = useGetSingleBookQuery(id as string);
 
   if (isLoading) return <Loader />;
-  console.log(data);
 
   return (
     <div>

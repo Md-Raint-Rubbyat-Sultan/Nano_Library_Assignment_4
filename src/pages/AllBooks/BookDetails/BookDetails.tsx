@@ -1,6 +1,7 @@
 import BorrowABookButton from "@/components/BorrowABookButton/BorrowABookButton";
 import Loader from "@/components/shared/Loader/Loader";
 import { Button } from "@/components/ui/button";
+import UpdateABookButton from "@/components/UpdateABookButton/UpdateABookButton";
 import type { book } from "@/interfaces/book.interface";
 import { useGetSingleBookQuery } from "@/redux/api/basiapi";
 import { ReceiptCent, Trash, UploadCloud } from "lucide-react";
@@ -60,9 +61,9 @@ export default function BookDetails() {
         <BorrowABookButton _id={_id} available={!available}>
           <ReceiptCent /> Borrow
         </BorrowABookButton>
-        <Button variant={"outline"} className="text-green-500">
+        <UpdateABookButton _id={_id}>
           <UploadCloud /> Update
-        </Button>
+        </UpdateABookButton>
         <Button variant={"outline"} className="text-green-500">
           <Trash />
         </Button>

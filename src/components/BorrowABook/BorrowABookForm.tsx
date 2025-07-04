@@ -18,10 +18,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "../../../components/ui/popover";
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Calendar } from "../../../components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import { useBorrowABookMutation } from "@/redux/api/basiapi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";

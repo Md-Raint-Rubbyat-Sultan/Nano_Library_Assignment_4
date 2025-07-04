@@ -1,5 +1,6 @@
 import BorrowABookButton from "@/components/BorrowABookButton/BorrowABookButton";
 import { Button } from "@/components/ui/button";
+import UpdateABookButton from "@/components/UpdateABookButton/UpdateABookButton";
 import ViewDtailsButton from "@/components/ViewDtailsButton/ViewDtailsButton";
 import { cn } from "@/lib/utils";
 import { EyeIcon, ReceiptCent, Trash, UploadCloud } from "lucide-react";
@@ -21,9 +22,9 @@ export default function CommonActionButtons({
       <BorrowABookButton _id={_id} available={!available}>
         <ReceiptCent /> Borrow
       </BorrowABookButton>
-      <Button variant={"outline"} className="text-green-500">
+      <UpdateABookButton _id={_id}>
         <UploadCloud /> Update
-      </Button>
+      </UpdateABookButton>
       <Button variant={"outline"} className="text-green-500">
         <Trash />
       </Button>

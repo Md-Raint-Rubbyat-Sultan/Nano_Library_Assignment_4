@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import BorrowABookForm from "./BorrowABookForm";
+import BorrowABookForm from "../../components/BorrowABook/BorrowABookForm";
 import { useGetSingleBookQuery } from "@/redux/api/basiapi";
 import Loader from "@/components/shared/Loader/Loader";
 import { cn } from "@/lib/utils";

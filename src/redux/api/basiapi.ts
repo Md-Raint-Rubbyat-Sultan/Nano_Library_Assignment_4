@@ -58,6 +58,18 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["books", "borrow"],
     }),
+    // Update a Book
+    updateABook: builder.mutation<
+      SingleBookData,
+      Partial<book> & Pick<book, "_id">
+    >({
+      query: ({ _id, ...updatedDoc }) => ({
+        url: `/books/${_id}`,
+        method: "PUT",
+        body: updatedDoc,
+      }),
+      invalidatesTags: ["books", "borrow"],
+    }),
     // end of queries
   }),
 });
@@ -68,4 +80,5 @@ export const {
   useGetBorrowedSummaryQuery,
   useCreateABookMutation,
   useBorrowABookMutation,
+  useUpdateABookMutation,
 } = baseApi;
